@@ -34,10 +34,11 @@ export default async function loginUser(req, res){
 
         //inside token it is only ID
         res.cookie('token', token, {
-            httpOnly : true,
-            sameSite : "strict",
-            secure : false, //for dev
+            httpOnly : true, //only to be rw by http request not js methods
+            sameSite : "none", //restrict cookies from being sent
+            secure : process.env.NODE_ENV == "production", //for dev its false, true for production
             maxAge : 60 * 60 * 1000
+
         });
         console.log("Token set !!")
         return res.status(200).json({message : 'Logged In Succesfully !'})
