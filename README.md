@@ -3,7 +3,7 @@
 **Goleet** is a full-stack web app that lets users create, manage, and share custom problem sheets built from the complete collection of **LeetCode questions**.
 Built for developers who want to organize their practice and share their path in one place.
 
-**Live URL:** [https://goleet.vercel.app](https://goleet.vercel.app)
+**Live URL:** [https://go-leet.vercel.app](https://go-leet.vercel.app)
 
 ---
 
