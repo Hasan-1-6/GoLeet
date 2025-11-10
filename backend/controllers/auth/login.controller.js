@@ -36,7 +36,7 @@ export default async function loginUser(req, res){
         res.cookie('token', token, {
             httpOnly : true, //only to be rw by http request not js methods
             sameSite : "none", //restrict cookies from being sent
-            secure : process.env.NODE_ENV == "production", //for dev its false, true for production
+            secure : true, //for dev its false, true for production
             maxAge : 60 * 60 * 1000
 
         });
