@@ -88,8 +88,9 @@ function App() {
         </>
         ) : (
           <>
-          {loading && <div className="bg-black/90 z-999 backdrop-blur-[2px] absolute h-screen w-screen flex justify-center items-center">
-            <img src={spinner} className='w-20'></img>  
+          {loading && <div className="bg-black/90 z-999 backdrop-blur-[2px] absolute h-screen w-screen flex flex-col justify-center items-center">
+            <img src={spinner} className='w-20'></img>
+            <h1 className='text-white font-bold'>Please wait Render is starting up...</h1>
           </div>}
           <AuthPage toggleIsLogged={setIsLogged} />
           </>
