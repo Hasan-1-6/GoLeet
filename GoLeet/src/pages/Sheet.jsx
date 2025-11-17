@@ -13,7 +13,6 @@ function Sheet() {
   const [userInput, setuserInput] = useState('');
   const [sheetData, setsheetData] = useState({});
   const [quesData, setquesData] = useState([]);
-  const [userName, setUserName] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -74,25 +73,15 @@ function Sheet() {
           method : "GET",
           credentials : "include",
         })
-        const userResp = await fetch(`${import.meta.env.VITE_APP_URL}/api/sidebar/getUserInfo`, {
-          method : "GET",
-          credentials : "include",
-        })
         const data = await resp.json();
-        const userData = await userResp.json();
+        
 
         if(!resp.ok){
           toast.error("Couldnt fetch sheet data" + data.message);
           navigate("/error")
           return;
         }
-        if(!userResp.ok){
-          toast.error("Couldnt fetch user data" + data.message);
-          navigate("/error")
-          return;
-        }
         setsheetData(data);
-        setUserName(userData.name)
         }
       catch(err){
         toast.error("Some error occured while fetching data" + err.message);
@@ -122,7 +111,7 @@ function Sheet() {
             <p className='text-[#EEEEEE] text-lg md:text-xl mt-4 md:mt-7'>{sheetData.description}</p>
             <div className='flex items-baseline mt-10'>
               <h4 className= 'font-semibold text-[#EEEEEE]'>Made by</h4>
-            <span className='text-teal-300 text-md md:text-xl font-extrabold ml-2'>{userName}</span>
+            <span className='text-teal-300 text-md md:text-xl font-extrabold ml-2'>{sheetData.owner}</span>
             <span className='font-extrabold text-[#EEEEEE] text-xl ml-auto'>{sheetData.numOfQues} Questions</span>
             </div>
         </div>
@@ -158,46 +147,6 @@ function Sheet() {
   )
 }
 
-{/* <div className='h-screen w-full overflow-y-scroll p-4 md:p-10'>
-        //used for showing all the text above 
-        <div className=''>
-            <h1 className='text-[#EEEEEE] text-4xl md:text-5xl font-semibold'>{sheetData.title}</h1>
-            
-            
-            <p className='text-[#EEEEEE] text-lg md:text-xl mt-4 md:mt-7'>{sheetData.description}</p>
-            <div className='flex items-baseline mt-10'>
-              <h4 className= 'font-semibold text-[#EEEEEE]'>Made by</h4>
-            <span className='text-teal-300 text-md md:text-xl font-extrabold ml-2'>{userName}</span>
-            <span className='font-extrabold text-[#EEEEEE] text-xl ml-auto'>{sheetData.numOfQues} Questions</span>
-            </div>
-        </div>
-
-        <div className='w-full flex relative justify-center mt-5 md:mt-10'>
-          {sheetData.owner && 
-          <div className='relative w-full flex justify-between items-center  p-2 bg-[#262A31] rounded-md'>
-              <input type="text" onChange={(e) => setuserInput(e.target.value)} value={userInput} className='w-[80%]  bg-transparent focus:outline-none focus:ring-none h-10 pl-4  text-[#EEEEEE]' placeholder='Enter Question to Find on Leetcode'/>
-             {userInput.length > 0 && <button onClick={() => setuserInput('') }className='text-[#EEEEEE] cursor-pointer hover:scale-105 transition hover:text-gray-500 mr-3'> <X/> </button>}
-          </div>
-          }
-         
-          {quesData.length > 0 && 
-          <div className='absolute border border-teal-400 w-[90%] md:w-[75%] top-23 mt-4 bg-[#262A31] rounded-md'>
-              {quesData.map((elem, key) => {
-                return <SheetAddQues setuserInput={setuserInput} sheetData={sheetData} difficulty={elem.difficulty} title = {elem.title} url = {elem.url} question_id = {elem.question_id} key={key} setSheetData = {setsheetData
-
-                }/>
-              })}
-          </div>}
-        </div>
-        
-        <div className='bg-[#262A31] mt-10'>
-          {( sheetData.ques && 
-            sheetData.ques.map((elem, key) =>{
-              return <QuesComp sheetData={sheetData} setSheetData={setsheetData} title={elem.title} link={elem.url} difficulty = {elem.difficulty} question_id = {elem.quesId} isOwner = {sheetData.owner} key={key}/>
-            })
-          )} 
-        </div>
-    </div> */}
 
 function QuesComp(props){
   const sheetData = props.sheetData
