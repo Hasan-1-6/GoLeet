@@ -111,7 +111,7 @@ function Sheet() {
             <p className='text-[#EEEEEE] text-lg md:text-xl mt-4 md:mt-7'>{sheetData.description}</p>
             <div className='flex items-baseline mt-10'>
               <h4 className= 'font-semibold text-[#EEEEEE]'>Made by</h4>
-            <span className='text-teal-300 text-md md:text-xl font-extrabold ml-2'>{sheetData.owner}</span>
+            <span className='text-teal-300 text-md md:text-xl font-extrabold ml-2'>{sheetData.author}</span>
             <span className='font-extrabold text-[#EEEEEE] text-xl ml-auto'>{sheetData.numOfQues} Questions</span>
             </div>
         </div>
