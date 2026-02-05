@@ -11,7 +11,7 @@ import cors from 'cors'
 
 dotenv.config();
 export const app = express();
-const allowedUrl = process.env.NODE_ENV === "production" ? "https://go-leet.vercel.app" : "http://localhost:5173";
+const allowedUrl = process.env.NODE_ENV === "production" ? "https://go-leet.metadude.in" : "http://localhost:5173";
 app.use(cors({
   origin: allowedUrl, // your React app’s URL
   credentials: true                // allow cookies
